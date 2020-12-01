@@ -1,0 +1,20 @@
+{
+    "success" : true,
+    "data": [
+        {
+            "id" : "RJ1",
+            "name" : "Nguyen Xuan Huy",
+            "class" : "ReactJS"
+        },
+        {
+            "id" : "RJ1",
+            "name" : "Nguyen Giang Son",
+            "class" : "ReactJS"
+        },
+        {
+            "id" : "RJ1",
+            "name" : "Hoang Trong Ha",
+            "class" : "ReactJS"
+        }
+    ]
+}
