@@ -1,3 +1,5 @@
+import * as type from "../const/ActionTypes"
+
 const initialState = {
     isLogin: false,
     token: "",
@@ -9,13 +11,13 @@ export default function authReducer(state = initialState, action = {}) {
     console.log("Action : ", action)
 
     switch (action.type) {
-        case "LOGIN":
+        case type.LOGIN:
             return {
                 ...state,
                 message: "",
                 loading: true
             }
-        case "LOGIN_SUCCESS":
+        case type.LOGIN_SUCCESS:
             return {
                 ...state,
                 isLogin: true,
@@ -24,7 +26,7 @@ export default function authReducer(state = initialState, action = {}) {
                 username: action.payload.username,
                 message: "Logged in success "
             }
-        case "LOGIN_FAILED":
+        case type.LOGIN_FAILED:
             return {
                 ...state,
                 isLogin: false,

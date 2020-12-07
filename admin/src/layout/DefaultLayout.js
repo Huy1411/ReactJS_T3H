@@ -54,7 +54,7 @@ class DefaultLayout extends Component {
                                 {
                                     routers.map(menu => {
                                         return !menu.children ? (
-                                            <Route path={menu.path}>{menu.component}</Route>
+                                            <Route key= {menu.path} path={menu.path}>{menu.component}</Route>
                                         ) : (
                                             menu.children.map(subMenu => (
                                                 <Route path={subMenu.path}> {subMenu.component}</Route>)
