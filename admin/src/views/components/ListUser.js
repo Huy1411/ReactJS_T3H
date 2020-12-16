@@ -1,7 +1,9 @@
 import React, {Component} from 'react'
-import {Space, Table, Tag,Input} from 'antd';
+import {Space, Table, Tag, Input} from 'antd';
 import {connect} from 'react-redux';
 import {fetchUsers} from '../../actions/users';
+import {Link, withRouter} from 'react-router-dom'
+import PropTypes from "prop-types"
 
 
 const {Search} = Input
@@ -44,10 +46,11 @@ class ListUser extends Component {
                 {
                     title: 'Action',
                     key: 'action',
-                    render: () => (
+                    render: ({id}) => (
                         <Space size="middle">
                             <a>View</a>
-                            <a>Edit</a>
+                            <a onClick={() => this.onEditUser(id)}> Edit</a>
+                            {/*<Link to={`users/edit/${id}`}> Edit</Link>*/}
                             <a>Delete</a>
                         </Space>
                     ),
@@ -55,13 +58,22 @@ class ListUser extends Component {
             ],
             key: "",
             current: 1,
-            pageSize: 2,
+            pageSize: 5,
         }
     }
 
+    onEditUser = (id) => {
+        console.log(id)
+        setTimeout(() => {
+            this.props.history.push(`edit/${id}`)
+        }, 2000)
+
+
+    }
+
     componentDidMount() {
-        const {key,current, pageSize } = this.state;
-        this.props.fetchUsers({key,current,pageSize});
+        const {key, current, pageSize} = this.state;
+        this.props.fetchUsers({key, current, pageSize});
     }
 
     onPageChange = (current) => {
@@ -69,19 +81,19 @@ class ListUser extends Component {
         this.onFetchUsers(this.state.key, current)
     }
 
-    onSearch = (key) =>{
-        this.setState({key,current : 1})
-        this.onFetchUsers(key , 1)
+    onSearch = (key) => {
+        this.setState({key, current: 1})
+        this.onFetchUsers(key, 1)
 
     }
 
-    onFetchUsers = (key,current) => {
+    onFetchUsers = (key, current) => {
         const {pageSize} = this.state
-        this.props.fetchUsers({key,current, pageSize})
+        this.props.fetchUsers({key, current, pageSize})
     }
     onSearchChange = (event) => {
         let key = event.target.value
-        if(!key){
+        if (!key) {
             key = ""
         }
         this.onSearch(key)
@@ -97,9 +109,9 @@ class ListUser extends Component {
                 <Search placeholder="input search text"
                         onChange={this.onSearchChange}
                         onSearch={this.onSearch}
-                        style={{ width: 300, margin: '10px 0'}}
-                        enterButton />
-                <Table key = {listUser.users.id} loading={listUser.loading}
+                        style={{width: 300, margin: '10px 0'}}
+                        enterButton/>
+                <Table key={listUser.users.id} loading={listUser.loading}
                        columns={columns}
                        dataSource={listUser.users}
                        pagination={{
@@ -115,6 +127,17 @@ class ListUser extends Component {
     }
 }
 
+ListUser.propType={
+    fetchUsers: PropTypes.func.required,
+    listUser: PropTypes.shape({
+        total: PropTypes.number.required,
+        loading: PropTypes.bool.isRequired,
+        users: PropTypes.array.isRequired
+
+    })
+
+}
+
 
 function mapStateToProps({users}) {
     return {
@@ -124,4 +147,4 @@ function mapStateToProps({users}) {
 
 }
 
-export default connect(mapStateToProps, {fetchUsers})(ListUser)
+export default connect(mapStateToProps, {fetchUsers})(withRouter(ListUser))

@@ -25,6 +25,13 @@ const routers =[
                 path: "/users/list",
                 icon: "",
                 component: <ListUser/>
+            },
+            {
+                name: "Update User ",
+                path: "/users/edit/:id",
+                icon: "",
+                component: <AddUser/>,
+                hidden: true
 
             }
         ]

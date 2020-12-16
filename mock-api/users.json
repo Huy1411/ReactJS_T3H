@@ -1,0 +1,49 @@
+{
+  "users": [
+    {
+      "id": "RJ1",
+      "name": "Nguyen Xuan Huy",
+      "class": "ReactJS"
+    },
+    {
+      "id": "RJ2",
+      "name": "Nguyen Giang Son",
+      "class": "ReactJS"
+    },
+    {
+      "id": "RJ3",
+      "name": "Hoang Trong Ha",
+      "class": "ReactJS"
+    },
+    {
+      "id": "RJ4",
+      "name": "Hoang Phuong Dung",
+      "class": "ReactJS2008"
+    },
+    {
+      "id": "RJ5",
+      "name": "Hoang Van Tu",
+      "class": "ReactJS2008"
+    },
+    {
+      "id": "RJ6",
+      "name": "Tran Van Nguyen",
+      "class": "ReactJS2008"
+    },
+    {
+      "id": "RJ7",
+      "name": "Dang Van Lam",
+      "clacxss": "ReactJS2008"
+    },
+    {
+      "id": "RJ8",
+      "name": "Nguyen Hue Thu",
+      "class": "ReactJS2008"
+    },
+    {
+      "id": "RJ09",
+      "name": "Dinh The Ngoc",
+      "class": "ReactJS2008"
+    }
+  ]
+}

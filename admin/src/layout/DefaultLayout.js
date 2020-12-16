@@ -34,10 +34,12 @@ class DefaultLayout extends Component {
                                     ) : (
                                         <SubMenu key={menu.path} icon={<UserOutlined/>} title={menu.name}>
                                             {menu.children.map(subMenu => (
+                                            !subMenu.hidden && (
                                                     <Menu.Item key={subMenu.path}>
                                                         <Link to={subMenu.path}>{subMenu.name}</Link>
                                                     </Menu.Item>
                                                 )
+                                            )
                                             )}
                                         </SubMenu>
                                     )
