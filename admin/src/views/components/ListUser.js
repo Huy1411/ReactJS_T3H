@@ -60,6 +60,7 @@ class ListUser extends Component {
             current: 1,
             pageSize: 5,
         }
+        this.onSearchDebounce = this.debounce(this.onSearch,500)
     }
 
     onEditUser = (id) => {
@@ -96,8 +97,19 @@ class ListUser extends Component {
         if (!key) {
             key = ""
         }
-        this.onSearch(key)
+        this.onSearchDebounce(key)
 
+    }
+
+    debounce = (func, wait) => {
+        let timeout
+        return (key) => {
+            clearTimeout(timeout)
+            timeout = setTimeout(() => {
+                func(key)
+            },wait)
+
+        }
     }
 
 

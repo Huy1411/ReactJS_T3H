@@ -1,4 +1,4 @@
-import React, {Component} from "react";
+import React, {Suspense} from "react";
 import {Link, Route, Switch} from "react-router-dom";
 import {Layout, Menu} from 'antd';
 import {PieChartOutlined, UserOutlined,} from '@ant-design/icons';
@@ -8,7 +8,7 @@ import routers from "../Routers";
 const {Header, Content, Footer, Sider} = Layout;
 const {SubMenu} = Menu;
 
-class DefaultLayout extends Component {
+class DefaultLayout extends React.Component {
     state = {
         collapsed: false,
     };
@@ -53,17 +53,15 @@ class DefaultLayout extends Component {
                     <Content style={{margin: '0 16px'}}>
                         <div className="site-layout-background" style={{padding: 24, minHeight: 360}}>
                             <Switch>
-                                {
-                                    routers.map(menu => {
-                                        return !menu.children ? (
-                                            <Route key= {menu.path} path={menu.path}>{menu.component}</Route>
-                                        ) : (
-                                            menu.children.map(subMenu => (
-                                                <Route path={subMenu.path}> {subMenu.component}</Route>)
-                                            )
-                                        )
-                                    })
-                                }
+                            <Suspense fallback ={"loading..."}>
+                             {routers.map(menu => {return !menu.children ? (
+                               <Route key= {menu.path} path={menu.path}>{menu.component}</Route>) : (menu.children.map(subMenu => (<Route path={subMenu.path}> {subMenu.component}</Route>)
+                                                                       )
+                                                                    )
+                                                                })
+                                                            }
+                                                            </Suspense>
+
                             </Switch>
                         </div>
                     </Content>

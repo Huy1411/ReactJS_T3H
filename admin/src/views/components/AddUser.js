@@ -8,7 +8,7 @@ import {addUser, getUser} from "../../actions/users"
 
 const {Text} = Typography;
 
-function AddUser({addUser, addUserState, getUser , getUserState}) {
+function AddUser({addUser, addUserState, getUser, getUserState}) {
     const [id, setId] = useFormInput("");
     const [name, setName] = useFormInput("");
     const [className, setClassName] = useFormInput("");
@@ -16,25 +16,28 @@ function AddUser({addUser, addUserState, getUser , getUserState}) {
     const params = useParams()
     useEffect(() => {
         console.log("params : " + params)
-        getUser(params.id)
-    },[])
+        if (params.id) {
+            getUser(params.id)
+        }
+
+    }, [])
 
     useEffect(() => {
-        if(getUserState.success){
+        if (getUserState.success) {
             let {user} = getUserState
-            setId({target: {value :user.id}})
-            setName({target: {value :user.name}})
-            setClassName({target: {value :user.class}})
+            setId({target: {value: user.id}})
+            setName({target: {value: user.name}})
+            setClassName({target: {value: user.class}})
         }
     }, [getUserState.success]);
-    
+
 
     const submit = () => {
-        if(params.id){
+        if (params.id) {
             //create update user actions, create api , tao reducer
             // updateUser({})
 
-        }else {
+        } else {
             addUser({
                 id,
                 name,

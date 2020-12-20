@@ -1,12 +1,35 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import Layout from "./layouts/Layout";
+import api from "../apis/api";
 
-function Contact(props) {
+
+export default function Contact({author, phone}) {
+    // const [author, setAuthor]= useState("")
+    // const [phone, setPhone]= useState("")
+    // useEffect(() => {
+    //     api.getPageInfo().then(data=> () => {
+    //         console.log("data", data)
+    //         setAuthor(data.author)
+    //         setPhone(data.phone)
+    //     })
+    // }, []);
+
     return (
         <Layout>
-            Contact
+            <h3>Contact</h3>
+            <p>Author: {author}</p>
+            <p>Phone: {phone}</p>
         </Layout>
     );
 }
 
-export default Contact;
+export async function getServerSideProps() {
+    const data = await api.getPageInfo()
+    return {
+        props: {
+            author: data.author,
+            phone: data.phone,
+        }
+    }
+}
+

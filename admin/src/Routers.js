@@ -1,5 +1,9 @@
-import AddUser from "./views/components/AddUser";
-import ListUser from "./views/components/ListUser";
+// import AddUser from "./views/components/AddUser";
+// import ListUser from "./views/components/ListUser";
+
+import React from "react";
+const  AddUser = React.lazy(()=> import ("./views/components/AddUser"))
+const  ListUser = React.lazy(()=> import ("./views/components/ListUser"))
 
 const routers =[
     {

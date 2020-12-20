@@ -1,12 +1,23 @@
-import React from 'react';
+import React from "react";
 import Layout from "./layouts/Layout";
+import api from "../apis/api";
 
-function About(props) {
+export default function about({ user }) {
     return (
         <Layout>
-            About
+            <h3>About</h3>
+            <p>Email: {user.email}</p>
+            <p>Address: {user.address}</p>
         </Layout>
     );
 }
 
-export default About;
+export async function getStaticProps() {
+    // get data from api
+    const user = await api.getAboutData();
+    return {
+        props: {
+            user,
+        },
+    };
+}
